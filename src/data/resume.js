@@ -14,8 +14,8 @@ export const identity = {
   location: 'Based in Bengaluru, India',
   github: 'https://github.com/SajjadMazhar',
   linkedin: 'https://linkedin.com/in/sajjadmazhar',
-  resume: '/assets/Sajjad_Mazhar_Resume.pdf',
-  avatar: '/assets/avatar.svg',
+  resume: `${import.meta.env.BASE_URL}assets/Sajjad_Mazhar_Resume.pdf`,
+  avatar: `${import.meta.env.BASE_URL}assets/avatar.jpg`,
 };
 
 export const hero = {
