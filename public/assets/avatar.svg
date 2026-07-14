@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="320" viewBox="0 0 320 320" role="img" aria-label="Sajjad Mazhar monogram">
+  <rect width="320" height="320" rx="24" fill="#111311"/>
+  <g fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="1">
+    <path d="M0 80 H320 M0 160 H320 M0 240 H320 M80 0 V320 M160 0 V320 M240 0 V320"/>
+  </g>
+  <circle cx="160" cy="122" r="72" fill="none" stroke="#3BEA6D" stroke-width="2" opacity="0.35"/>
+  <text x="160" y="150" text-anchor="middle" font-family="'Poppins','Segoe UI',sans-serif" font-size="120" font-weight="700" fill="#F5F5F5">SM</text>
+  <text x="160" y="240" text-anchor="middle" font-family="'Inter','Segoe UI',sans-serif" font-size="18" font-weight="600" letter-spacing="6" fill="#3BEA6D">SAJJAD</text>
+</svg>
