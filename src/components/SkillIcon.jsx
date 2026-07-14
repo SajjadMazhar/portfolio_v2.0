@@ -1,0 +1,86 @@
+import {
+  SiJavascript,
+  SiTypescript,
+  SiPython,
+  SiDart,
+  SiHtml5,
+  SiNodedotjs,
+  SiNestjs,
+  SiReact,
+  SiExpress,
+  SiRedux,
+  SiFlutter,
+  SiFlask,
+  SiElectron,
+  SiMapbox,
+  SiLeaflet,
+  SiThreedotjs,
+  SiGooglemaps,
+  SiGooglecloud,
+  SiFirebase,
+  SiDocker,
+  SiNginx,
+  SiMongodb,
+  SiPostgresql,
+  SiMysql,
+  SiRedis,
+  SiGithub,
+  SiPostman,
+  SiJsonwebtokens,
+  SiSequelize,
+  SiMongoose,
+  SiWhatsapp,
+} from 'react-icons/si';
+import { FaCss3Alt, FaAws } from 'react-icons/fa';
+import Icon from './Icon.jsx';
+
+// Brand icons for skill pills, keyed by the exact label used in src/data/resume.js
+const registry = {
+  'JavaScript / ES6+': SiJavascript,
+  TypeScript: SiTypescript,
+  Python: SiPython,
+  Dart: SiDart,
+  HTML5: SiHtml5,
+  CSS3: FaCss3Alt,
+  'Node.js': SiNodedotjs,
+  NestJS: SiNestjs,
+  'React.js': SiReact,
+  'Express.js': SiExpress,
+  'Redux / Toolkit': SiRedux,
+  Flutter: SiFlutter,
+  Flask: SiFlask,
+  'Electron.js': SiElectron,
+  'Mapbox GL': SiMapbox,
+  Leaflet: SiLeaflet,
+  'Three.js': SiThreedotjs,
+  'Google Maps API': SiGooglemaps,
+  'AWS S3': FaAws,
+  EC2: FaAws,
+  'ECS / ECR': FaAws,
+  Lightsail: FaAws,
+  'GCP Compute': SiGooglecloud,
+  'Cloud Storage': SiGooglecloud,
+  'Pub/Sub': SiGooglecloud,
+  Firebase: SiFirebase,
+  Docker: SiDocker,
+  Nginx: SiNginx,
+  MongoDB: SiMongodb,
+  PostgreSQL: SiPostgresql,
+  MySQL: SiMysql,
+  Redis: SiRedis,
+  'Git / GitHub': SiGithub,
+  Postman: SiPostman,
+  'Docker Compose': SiDocker,
+  'JWT / Passport.js': SiJsonwebtokens,
+  Sequelize: SiSequelize,
+  Mongoose: SiMongoose,
+  'WhatsApp Cloud API': SiWhatsapp,
+};
+
+// Renders a skill's brand icon; falls back to the parent group's lucide icon
+// when no brand logo exists (e.g. GDAL, PyProj, REST APIs).
+export default function SkillIcon({ name, fallback, size = 14 }) {
+  const Cmp = registry[name];
+  if (Cmp) return <Cmp size={size} aria-hidden="true" />;
+  return fallback ? <Icon name={fallback} size={size} /> : null;
+}

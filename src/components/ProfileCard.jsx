@@ -66,7 +66,7 @@ export default function ProfileCard() {
           </Social>
         </div>
         <BtnLink className="btn btn--secondary btn--full" href={identity.resume} style={{ marginTop: 20 }}>
-          <FileText size={18} strokeWidth={1.8} /> View My CV
+          <FileText size={18} strokeWidth={1.8} /> View My Resume
         </BtnLink>
         <BtnLink className="btn btn--primary btn--full" href={`mailto:${identity.email}`} style={{ marginTop: 12 }}>
           <Mail size={18} strokeWidth={1.8} /> Contact Me

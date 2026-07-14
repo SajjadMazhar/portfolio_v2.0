@@ -1,15 +1,25 @@
+import { useRef } from 'react';
 import { motion } from 'motion/react';
 import Icon from './Icon.jsx';
 import { identity, navSections } from '../data/resume.js';
 import { useScrollSpy } from '../hooks/useScrollSpy.js';
+import { useStuck } from '../hooks/useStuck.js';
 
 const sectionIds = navSections.map((s) => s.id);
 
+// The fixed theme/GitHub/résumé buttons occupy a top:20px..176px column on
+// mobile (see .controls in styles.css). The navbar must shift out of their
+// way as soon as it scrolls into that band — not only once it's fully
+// pinned at top:20, since it would otherwise pass behind them en route.
+const CONTROLS_CLEARANCE = 180;
+
 export default function Navbar() {
   const active = useScrollSpy(sectionIds);
+  const navRef = useRef(null);
+  const stuck = useStuck(navRef, CONTROLS_CLEARANCE);
 
   return (
-    <div className="navbar-wrap">
+    <div ref={navRef} className={stuck ? 'navbar-wrap navbar-wrap--stuck' : 'navbar-wrap'}>
       <nav className="navbar" aria-label="Section navigation">
         <div className="navbar__brand">
           <img src={identity.avatar} alt={identity.name} />

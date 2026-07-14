@@ -46,8 +46,16 @@ export default function TypeText({
 
   const Tag = as;
   let offset = 0;
+  // Callers that pass a block-establishing className (e.g. .line, .lead)
+  // already control display. Everyone else gets a bare inline <span>, which
+  // breaks position:relative + an absolute-positioned child once the ghost
+  // text wraps to multiple lines — browsers only give the absolute overlay
+  // a containing block matching the first line fragment, so the rest of
+  // the typed text spills out and overlaps whatever follows. inline-block
+  // gives it a real box spanning every wrapped line instead.
+  const display = className ? undefined : 'inline-block';
   return (
-    <Tag ref={ref} className={className} style={{ position: 'relative', ...style }} aria-label={full} {...rest}>
+    <Tag ref={ref} className={className} style={{ display, position: 'relative', ...style }} aria-label={full} {...rest}>
       {/* layout ghost */}
       <span aria-hidden="true" style={{ visibility: 'hidden' }}>
         {segs.map((s, i) => (

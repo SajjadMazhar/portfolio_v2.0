@@ -1,5 +1,5 @@
-import { hero, stats } from '../data/resume.js';
-import StatCard from './StatCard.jsx';
+import { hero } from '../data/resume.js';
+import HeroStats from './HeroStats.jsx';
 import TypeText from './TypeText.jsx';
 import TypedCode from './TypedCode.jsx';
 
@@ -25,11 +25,7 @@ export default function Hero() {
       </h1>
       <TypeText as="p" className="lead" text={hero.lead} delay={2.9} speed={280} maxDur={1.6} />
       <TypedCode startDelay={4700} />
-      <div className="stats">
-        {stats.map((s, i) => (
-          <StatCard key={s.label} {...s} delay={0.5 + i * 0.12} />
-        ))}
-      </div>
+      <HeroStats delay={0.6} />
     </section>
   );
 }

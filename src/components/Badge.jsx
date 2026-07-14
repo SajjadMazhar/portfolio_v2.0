@@ -1,4 +1,5 @@
 import { motion } from 'motion/react';
+import SkillIcon from './SkillIcon.jsx';
 
 const row = {
   hidden: {},
@@ -10,16 +11,19 @@ const chip = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.35, ease: 'easeOut' } },
 };
 
-export function Badge({ accent = false, children }) {
+export function Badge({ accent = false, icon, children }) {
   return (
     <motion.span className={accent ? 'badge badge--accent' : 'badge'} variants={chip}>
+      {icon && <span className="badge__icon">{icon}</span>}
       {children}
     </motion.span>
   );
 }
 
 // Staggered chip reveal; renders accent badges first, like v1.
-export function BadgeRow({ badges = [], accentBadges = [], style }) {
+// Pass iconFallback (a lucide icon name from Icon.jsx) to show a brand icon
+// per skill, falling back to that icon when no brand logo exists.
+export function BadgeRow({ badges = [], accentBadges = [], style, iconFallback }) {
   return (
     <motion.div
       className="badge-row"
@@ -30,12 +34,14 @@ export function BadgeRow({ badges = [], accentBadges = [], style }) {
       variants={row}
     >
       {accentBadges.map((b) => (
-        <Badge key={b} accent>
+        <Badge key={b} accent icon={iconFallback && <SkillIcon name={b} fallback={iconFallback} />}>
           {b}
         </Badge>
       ))}
       {badges.map((b) => (
-        <Badge key={b}>{b}</Badge>
+        <Badge key={b} icon={iconFallback && <SkillIcon name={b} fallback={iconFallback} />}>
+          {b}
+        </Badge>
       ))}
     </motion.div>
   );
