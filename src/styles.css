@@ -91,7 +91,6 @@
   --text-hero: 72px;
   --text-h2: 48px;
   --text-h3: 28px;
-  --text-stat: 54px;
   --text-body: 18px;
   --text-body-sm: 15px;
   --text-label: 13px;
@@ -196,17 +195,24 @@ button { font-family: var(--font-body); }
 .code-frag {
   position: absolute;
   margin: 0;
+  max-width: 40%;
+  overflow: hidden;
   font-family: var(--font-mono);
   font-size: 13px;
   line-height: 1.7;
   color: var(--text-primary);
-  opacity: 0.07;
+  opacity: 0.16;
   white-space: pre;
   user-select: none;
 }
-.code-frag--accent { color: var(--accent); opacity: 0.14; }
-@media (max-width: 1100px) {
-  .code-frag { display: none; }
+.code-frag--accent { color: var(--accent); opacity: 0.26; }
+@media (max-width: 560px) {
+  .code-frag { font-size: 11px; }
+}
+/* Short viewports (e.g. phones in landscape): shrink further so the
+   multi-line fragments stay inside their 10%-tall grid slots. */
+@media (max-height: 600px) {
+  .code-frag { font-size: 10px; line-height: 1.4; }
 }
 
 /* Terminal typing caret (used by TypeText while typing) */
@@ -362,6 +368,7 @@ button { font-family: var(--font-body); }
 }
 .badge--accent { background: var(--accent-tint); color: var(--accent-strong); }
 .badge-row { display: flex; flex-wrap: wrap; gap: 8px; }
+.badge__icon { display: inline-flex; margin-right: 6px; flex: 0 0 auto; }
 
 /* ============================================================
    Profile card (sidebar)
@@ -424,12 +431,31 @@ button { font-family: var(--font-body); }
   color: var(--text-secondary); max-width: 640px; margin-bottom: 32px;
 }
 
-/* ---- Stat cards ---- */
-.stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-.stat { padding: 28px 24px; text-align: left; }
-.stat__value { font-family: var(--font-display); font-size: var(--text-stat); font-weight: 700; line-height: 1; color: var(--text-primary); }
-.stat__value .accent { color: var(--accent); }
-.stat__label { margin-top: 10px; font-size: 15px; color: var(--text-secondary); }
+/* ---- Hero stats terminal ---- */
+.hero-stats {
+  margin-top: 28px;
+  padding: 22px 24px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-hairline);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+  font-family: var(--font-mono);
+  font-size: 14px;
+  line-height: 1.9;
+}
+.hero-stats__prompt { color: var(--text-secondary); min-height: 1.9em; }
+.hero-stats__obj { margin-top: 2px; }
+.hero-stats__brace { color: var(--text-secondary); }
+.hero-stats__row { padding-left: 1.4em; white-space: nowrap; }
+.hero-stats__key { color: var(--accent-strong); }
+.hero-stats__punc { color: var(--text-secondary); }
+.hero-stats__val { color: var(--text-primary); font-weight: 600; }
+.hero-stats__comment { color: var(--text-secondary); opacity: 0.65; }
+@media (max-width: 560px) {
+  .hero-stats { font-size: 12.5px; }
+  .hero-stats__row { white-space: normal; }
+  .hero-stats__comment { display: block; padding-left: 1.4em; }
+}
 
 /* ---- Section headings ---- */
 .h2 { font-size: var(--text-h2); font-weight: 600; letter-spacing: -0.01em; margin-bottom: 28px; }
@@ -521,25 +547,30 @@ button { font-family: var(--font-body); }
    Responsive
    ============================================================ */
 @media (max-width: 980px) {
-  :root { --container-pad: 24px; --text-hero: 52px; --text-h2: 36px; --text-stat: 42px; }
+  :root { --container-pad: 24px; --text-hero: 52px; --text-h2: 36px; }
   .layout { grid-template-columns: 1fr; gap: 28px; }
   .sidebar { position: static; }
   .profile { max-width: 480px; margin: 0 auto; }
   .navbar__brand { display: none; }
   .navbar { justify-content: center; }
   .navbar__links { flex-wrap: wrap; justify-content: center; }
+  /* Only once the sticky navbar is actually pinned (and level with the
+     fixed theme/GitHub/résumé buttons) does it need to shrink and shift
+     left to clear them; otherwise it stays centered. */
+  .navbar-wrap--stuck { margin-right: 56px; }
+  .navbar-wrap--stuck .navbar { padding: 8px 12px; }
+  .navbar-wrap--stuck .navbar__links { gap: 7px; }
+  .navbar-wrap--stuck .navbar__links .icon-btn { width: 33px; height: 33px; }
   .skills-grid { grid-template-columns: 1fr; }
   .controls { top: 20px; right: 20px; }
 }
 @media (max-width: 560px) {
-  :root { --text-hero: 40px; --text-stat: 36px; --container-pad: 18px; }
+  :root { --text-hero: 40px; --container-pad: 18px; }
   .shell { padding: 32px var(--container-pad) 80px; }
-  .stats { grid-template-columns: 1fr; }
   .card { padding: 24px; }
   .exp-head, .project__top { flex-direction: column; }
   .timeline-body { flex-direction: column; gap: 8px; }
   .date-pill { align-self: flex-start; }
-  .navbar__links .icon-btn { width: 38px; height: 38px; }
 }
 
 @media (prefers-reduced-motion: reduce) {

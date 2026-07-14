@@ -30,9 +30,9 @@ export const hero = {
 };
 
 export const stats = [
-  { value: 4, suffix: '+', label: 'Years of Experience' },
-  { value: 5, suffix: '+', label: 'Products Shipped' },
-  { value: 100, suffix: '+', label: 'Students Mentored' },
+  { key: 'experience', value: 4, suffix: '+ yrs', label: 'Years of Experience' },
+  { key: 'shipped', value: 5, suffix: '+', label: 'Products Shipped' },
+  { key: 'mentored', value: 100, suffix: '+ students', label: 'Students Mentored' },
 ];
 
 export const navSections = [
@@ -166,7 +166,7 @@ export const skillGroups = [
 
 export const education = [
   { title: 'MCA in AI / ML', org: 'Amity University', date: 'Expected Feb 2027' },
-  { title: 'B.Sc. — 73%', org: 'Calcutta University', date: 'Oct 2020' },
+  { title: 'B.Sc.', org: 'Calcutta University', date: 'Oct 2020' },
 ];
 
 export const contact = {
